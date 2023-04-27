@@ -1,6 +1,5 @@
 import loginService from "../service/login.service.js";
 import bcrypt from "../utils/bcrypt.js";
-
 async function criarTabela(req, res, next) {
   try {
     await loginService.criarTabela();
@@ -9,14 +8,12 @@ async function criarTabela(req, res, next) {
     return res.status(400).send({ message: "erro" });
   }
 }
-
 async function criarUsuario(req, res, next) {
   try {
     if ( !req.body.nome || !req.body.email || !req.body.senha || !req.body.tipo
     ) {
       return res.status(400).send({ message: "erro ao criar" });
     }
-
     const dados = {
       nome: req.body.nome,
       email: req.body.email,
@@ -33,13 +30,11 @@ async function criarUsuario(req, res, next) {
     return res.status(400).send({ message: "erro" });
   }
 }
-
 async function buscarUsuario(req, res, next) {
   try {
     if (!req.body.email || !req.body.senha) {
       return res.status(400).send({ message: "erro" });
     }
-
     const dados = {
       email: req.body.email,
       senha: req.body.senha
@@ -50,12 +45,10 @@ async function buscarUsuario(req, res, next) {
     }else{
       return res.status(400).send({message: resonse.message})
     }
-
   } catch (err) {
     return res.status(400).send({ message: "Erro" });
   }
 }
-
 async function testeLogin(req, res, next){
   try {
     return res.status(200).send({message: 'logado como admin'})
@@ -63,7 +56,6 @@ async function testeLogin(req, res, next){
     
   }
 }
-
 export default {
   buscarUsuario,
   criarTabela,
